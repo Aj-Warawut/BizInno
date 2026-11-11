@@ -90,7 +90,7 @@ let L=Q.get("lang")||store.get("lang")||"th";
 const T={
  th:{h1:"แผนการลงทะเบียนเรียน ภาคการศึกษา {t}",h1s:"สาขาวิชาบริหารธุรกิจและนวัตกรรมดิจิทัล คณะการบัญชีและการจัดการ มหาวิทยาลัยมหาสารคาม",pick:"เลือกข้อมูลของคุณ",lP:"หลักสูตร",lE:"ภาคที่เข้าศึกษา",lT:"แผนการเรียน",
   ma:"ปริญญาโท (บธ.ม.)",phd:"ปริญญาเอก (ปร.ด.)",before:"ก่อนหน้านั้น",you:"ภาค {t} คุณต้องลงทะเบียน",sem:"ภาคที่ {n} ของแผน · {s}",cr:"หน่วยกิต",total:"รวม",
-  open:"เปิดภาคนี้",thesis:"ลงทะเบียนร่วมกับอาจารย์ที่ปรึกษา",thFor:"สำหรับนิสิตรุ่นเข้า {e}",thLater:"ยังไม่ลงทะเบียนภาคนี้",thLaterNote:"เรียนรายวิชาให้ครบ 2 ภาคก่อน แล้ว{x} ในภาคที่ 3 จึงลงทะเบียนได้",thTitle:"วิทยานิพนธ์และการค้นคว้าอิสระ ภาค {t}",thCoh:"นิสิตรุ่นที่ลงทะเบียน",thCond:"เงื่อนไข",plan:"แผน",thNone:"–",notopen:"ไม่เปิดภาคนี้",detail:"รายละเอียด",elective:"วิชาเลือก {c} หน่วยกิต",elecPick:"เลือกจากวิชาเลือกที่เปิดภาคนี้:",
+  open:"เปิดภาคนี้",thesis:"ลงทะเบียนร่วมกับอาจารย์ที่ปรึกษา",thFor:"สำหรับนิสิตรุ่นเข้า {e}",thLater:"ยังไม่ลงทะเบียนภาคนี้",thLaterNote0:"เรียนรายวิชาให้ครบ 2 ภาคก่อน จึงลงทะเบียนได้ตั้งแต่ภาคที่ 3",thLaterNote:"เรียนรายวิชาให้ครบ 2 ภาคก่อน แล้ว{x} ในภาคที่ 3 จึงลงทะเบียนได้",thTitle:"วิทยานิพนธ์และการค้นคว้าอิสระ ภาค {t}",thCoh:"นิสิตรุ่นที่ลงทะเบียน",thCond:"เงื่อนไข",plan:"แผน",thNone:"–",notopen:"ไม่เปิดภาคนี้",detail:"รายละเอียด",elective:"วิชาเลือก {c} หน่วยกิต",elecPick:"เลือกจากวิชาเลือกที่เปิดภาคนี้:",
   over:"คุณเรียนครบตามแผนการศึกษาแล้ว ลงทะเบียนวิทยานิพนธ์หรือการค้นคว้าอิสระต่อ และรักษาสภาพนิสิตทุกภาค ปรึกษาอาจารย์ที่ปรึกษาก่อนลงทะเบียน",
   late:"เข้าภาคปลาย: ลงทะเบียนรายวิชาภาคปลายของแผนก่อน แล้วเรียนรายวิชาภาคต้นในภาคต้นปีถัดไปพร้อมรุ่นใหม่ การสอบวัดคุณสมบัติ สอบเค้าโครง (3 บท) และสอบ 5 บท จึงช้ากว่ารุ่นที่เข้าภาคต้นประมาณหนึ่งภาค",entered:"เข้า {e}",
   notopenNote:"มีวิชาตามแผนที่ไม่เปิดภาคนี้ ปรึกษาอาจารย์ที่ปรึกษาเพื่อวางแผนลงทะเบียน",
@@ -101,7 +101,7 @@ const T={
   link:"คัดลอกลิงก์ของฉัน",copied:"คัดลอกลิงก์แล้ว"},
  en:{h1:"Course Registration Plan, Semester {t}",h1s:"Business and Digital Innovation, Mahasarakham Business School, Mahasarakham University",pick:"Select your details",lP:"Programme",lE:"Semester you entered",lT:"Study plan",
   ma:"Master's (M.B.A.)",phd:"Doctoral (Ph.D.)",before:"Earlier",you:"In semester {t} you register for",sem:"Plan semester {n} · {s}",cr:"credits",total:"Total",
-  open:"Offered this semester",thesis:"Register with your advisor",thFor:"For students who entered {e}",thLater:"Not this semester",thLaterNote:"Complete two semesters of coursework, take the {x} in semester 3, then register",thTitle:"Thesis and independent study, semester {t}",thCoh:"Students who register",thCond:"Condition",plan:"Plan",thNone:"–",notopen:"Not offered this semester",detail:"Details",elective:"Elective, {c} credits",elecPick:"Choose from the electives offered this semester:",
+  open:"Offered this semester",thesis:"Register with your advisor",thFor:"For students who entered {e}",thLater:"Not this semester",thLaterNote0:"Complete two semesters of coursework first; register from semester 3",thLaterNote:"Complete two semesters of coursework, take the {x} in semester 3, then register",thTitle:"Thesis and independent study, semester {t}",thCoh:"Students who register",thCond:"Condition",plan:"Plan",thNone:"–",notopen:"Not offered this semester",detail:"Details",elective:"Elective, {c} credits",elecPick:"Choose from the electives offered this semester:",
   over:"You have completed the coursework in your study plan. Register for thesis or independent study and maintain your student status each semester. Please consult your advisor before registering.",
   late:"Second-semester entry: you take the plan's second-semester courses first, then the first-semester courses in the next first semester with the new intake. Your qualifying, proposal (chapters 1–3) and final (5-chapter) examinations are therefore about one semester later than for first-semester entrants.",entered:"entered {e}",
   notopenNote:"Some courses in your plan are not offered this semester. Please consult your advisor.",
@@ -132,8 +132,8 @@ function render(){
   const isTh=x=>/วิทยานิพนธ์|ค้นคว้าอิสระ/.test(x);
   const cohOf=(code,k)=>ENT.filter(x=>thOK(k,x[3])&&(pl.slots[x[3]-1][2][k]||[]).some(i=>i.code===code)).map(x=>x[0]);
   const span=a=>a.length>2?a[a.length-1]+" – "+a[0]:a.join(", ");   // แสดงช่วงรุ่น เช่น 1/2567 – 2/2568
-  const ruleOf=k=>{const r=(REG.thesisRule||{})[P];return r&&r.tracks&&r.tracks.includes(pl.tracks[k])?r:null;};   // แผนที่เรียนรายวิชา: สอบ QE/CE ภาคที่ 3 ก่อนลงวิทยานิพนธ์
-  const ruleFor=k=>{const r=ruleOf(k);return r?r.text[L==="en"?1:0]:"";};
+  const ruleOf=k=>[].concat((REG.thesisRule||{})[P]||[]).find(r=>r&&r.tracks&&r.tracks.includes(pl.tracks[k]))||null;   // รายการกฎแยกตามแผน   // แผนที่เรียนรายวิชา: สอบ QE/CE ภาคที่ 3 ก่อนลงวิทยานิพนธ์
+  const ruleFor=k=>{const r=ruleOf(k);return r&&r.text?r.text[L==="en"?1:0]:"";};
   const thOK=(k,n)=>{const r=ruleOf(k);return !r||n>=(r.from||1);};   // ภาคที่ n ของแผนลงทะเบียนวิทยานิพนธ์ได้หรือยัง
   $("sP").innerHTML=Object.keys(D.programs).map(k=>'<button data-v="'+k+'"'+(k===P?' class="on"':"")+">"+esc(t(k))+"</button>").join("");
   $("sE").innerHTML=ENT.map(x=>'<button data-v="'+x[0]+'"'+(x[0]===E?' class="on"':"")+">"+x[0]+"</button>").join("")+'<button data-v="before"'+(E==="before"?' class="on"':"")+">"+esc(t("before"))+"</button>";
@@ -149,7 +149,7 @@ function render(){
   else{const s=pl.slots[n-1],items=s[2][K]||[];let miss=false,tot=0;
     h='<div class="head"><b>'+esc(t("you",{t:D.term.label}))+'</b><span class="sub">'+esc(t("entered",{e:E}))+" · "+esc(t("sem",{n,s:L==="en"?SLOT_EN(s[1]):s[1]}))+" · "+esc(TRK(pl.tracks[K]))+"</span></div>";
     items.forEach(x=>{tot+=x.cr;if(x.code==="elective"){h+='<div class="course"><div class="nm"><b>'+esc(t("elective",{c:x.cr}))+"</b><small>"+esc(t("elecPick"))+"</small></div></div>"+elec.map(c=>row(c.code,c.nameTh,cnum(c),c)).join("");if(!elec.length)miss=true;}
-      else if(isTh(x.name)&&!thOK(K,n)){tot-=x.cr;const r=ruleOf(K);h+='<div class="course"><div class="nm"><b>'+esc(x.code.slice(0,4)+" "+x.code.slice(4))+"</b> "+esc(L==="en"?"Thesis / Independent Study":x.name)+'<span class="tag wait">'+esc(t("thLater"))+"</span><small>"+esc(t("thLaterNote",{x:r.exam[L==="en"?1:0]}))+'</small></div><span class="cr" style="color:var(--muted)">–</span></div>';}
+      else if(isTh(x.name)&&!thOK(K,n)){tot-=x.cr;const r=ruleOf(K);h+='<div class="course"><div class="nm"><b>'+esc(x.code.slice(0,4)+" "+x.code.slice(4))+"</b> "+esc(L==="en"?"Thesis / Independent Study":x.name)+'<span class="tag wait">'+esc(t("thLater"))+"</span><small>"+esc(r.exam?t("thLaterNote",{x:r.exam[L==="en"?1:0]}):t("thLaterNote0"))+'</small></div><span class="cr" style="color:var(--muted)">–</span></div>';}
       else{const c=byCode[x.code];if(!c&&!/วิทยานิพนธ์|ค้นคว้าอิสระ/.test(x.name))miss=true;h+=row(x.code,x.name,x.cr,c);}});
     h+='<p style="margin:10px 0 0;text-align:right">'+esc(t("total"))+' <span class="big">'+tot+"</span> "+esc(t("cr"))+"</p>";
     if(miss)h+="<div class='warn'>"+esc(t("notopenNote"))+"</div>";
