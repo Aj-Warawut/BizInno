@@ -88,22 +88,22 @@ const store={get:k=>{try{return localStorage.getItem("bzreg_"+k)}catch(e){return
 const Q=new URLSearchParams(location.search);
 let L=Q.get("lang")||store.get("lang")||"th";
 const T={
- th:{h1:"แผนการลงทะเบียนเรียน ภาคการศึกษา {t}",h1s:"สาขาวิชาบริหารธุรกิจและนวัตกรรมดิจิทัล คณะการบัญชีและการจัดการ มหาวิทยาลัยมหาสารคาม",pick:"เลือกข้อมูลของคุณ",lP:"หลักสูตร",lE:"รุ่น (ปีที่เข้าศึกษา)",lT:"แผนการเรียน",
+ th:{h1:"แผนการลงทะเบียนเรียน ภาคการศึกษา {t}",h1s:"สาขาวิชาบริหารธุรกิจและนวัตกรรมดิจิทัล คณะการบัญชีและการจัดการ มหาวิทยาลัยมหาสารคาม",pick:"เลือกข้อมูลของคุณ",lP:"หลักสูตร",lE:"ภาคที่เข้าศึกษา",lT:"แผนการเรียน",
   ma:"ปริญญาโท (บธ.ม.)",phd:"ปริญญาเอก (ปร.ด.)",before:"ก่อนหน้านั้น",you:"ภาค {t} คุณต้องลงทะเบียน",sem:"ภาคที่ {n} ของแผน · {s}",cr:"หน่วยกิต",total:"รวม",
   open:"เปิดภาคนี้",thesis:"ลงทะเบียนได้ทุกภาค · ร่วมกับอาจารย์ที่ปรึกษา",notopen:"ไม่เปิดภาคนี้",detail:"รายละเอียด",elective:"วิชาเลือก {c} หน่วยกิต",elecPick:"เลือกจากวิชาเลือกที่เปิดภาคนี้:",
   over:"คุณเรียนครบตามแผนการศึกษาแล้ว ลงทะเบียนวิทยานิพนธ์หรือการค้นคว้าอิสระต่อ และรักษาสภาพนิสิตทุกภาค ปรึกษาอาจารย์ที่ปรึกษาก่อนลงทะเบียน",
-  late:"นิสิตที่เข้าภาคต้นและภาคปลายของปีเดียวกันเป็นรุ่นเดียวกัน และเรียนรายวิชาเดียวกันในแต่ละภาค",yr:"รหัส {y}",yrs:"เข้า 1/{Y} หรือ 2/{Y}",
+  late:"เข้าภาคปลาย: ลงทะเบียนรายวิชาภาคปลายของแผนก่อน แล้วเรียนรายวิชาภาคต้นในภาคต้นปีถัดไปพร้อมรุ่นใหม่ การสอบวัดคุณสมบัติ สอบเค้าโครง (3 บท) และสอบ 5 บท จึงช้ากว่ารุ่นที่เข้าภาคต้นประมาณหนึ่งภาค",entered:"เข้า {e}",
   notopenNote:"มีวิชาตามแผนที่ไม่เปิดภาคนี้ ปรึกษาอาจารย์ที่ปรึกษาเพื่อวางแผนลงทะเบียน",
   opened:"รายวิชาที่เปิดสอนภาคนี้",groups:"กลุ่มเรียน",cal:"กำหนดการสำคัญ",tba:"รอประกาศ",calLink:"ปฏิทินการศึกษาของมหาวิทยาลัย",regLink:"ระบบลงทะเบียน",
   help:"ติดต่อและช่วยเหลือ",helpTxt:"ข้อสงสัยเรื่องคะแนนหรือผลการประเมิน ขอดูรายละเอียดหรือยื่นคำร้องได้ {w}",appealForm:"แบบฟอร์มขอดูรายละเอียดและอุทธรณ์ผลการประเมิน",appealTba:"แบบฟอร์มออนไลน์ (อยู่ระหว่างจัดทำ) ติดต่อเจ้าหน้าที่หลักสูตร",contactTba:"ช่องทางติดต่อหลักสูตร: รอประกาศ",
   cdesc:"คำอธิบายรายวิชา",cclo:"เมื่อเรียนจบ นิสิตจะสามารถ",cas:"งานและการสอบ",wk:"สัปดาห์",what:"งาน / การสอบ",wt:"สัดส่วน",cpre:"วิชาที่ต้องเรียนก่อน",sched:"วัน เวลา ห้อง",
   foot:"ข้อมูลจากแผนการศึกษาใน มคอ.2 และ มคอ.3 ภาค {t} · ปรับปรุง {u} · กรณีข้อมูลต่างจากประกาศของมหาวิทยาลัย ให้ถือตามประกาศของมหาวิทยาลัย",
   link:"คัดลอกลิงก์ของฉัน",copied:"คัดลอกลิงก์แล้ว"},
- en:{h1:"Course Registration Plan, Semester {t}",h1s:"Business and Digital Innovation, Mahasarakham Business School, Mahasarakham University",pick:"Select your details",lP:"Programme",lE:"Intake year",lT:"Study plan",
+ en:{h1:"Course Registration Plan, Semester {t}",h1s:"Business and Digital Innovation, Mahasarakham Business School, Mahasarakham University",pick:"Select your details",lP:"Programme",lE:"Semester you entered",lT:"Study plan",
   ma:"Master's (M.B.A.)",phd:"Doctoral (Ph.D.)",before:"Earlier",you:"In semester {t} you register for",sem:"Plan semester {n} · {s}",cr:"credits",total:"Total",
   open:"Offered this semester",thesis:"Every semester · with your advisor",notopen:"Not offered this semester",detail:"Details",elective:"Elective, {c} credits",elecPick:"Choose from the electives offered this semester:",
   over:"You have completed the coursework in your study plan. Register for thesis or independent study and maintain your student status each semester. Please consult your advisor before registering.",
-  late:"Students admitted in the first and second semesters of the same year form one class and take the same courses each semester.",yr:"Class of {Y}",yrs:"entered 1/{Y} or 2/{Y}",
+  late:"Second-semester entry: you take the plan's second-semester courses first, then the first-semester courses in the next first semester with the new intake. Your qualifying, proposal (chapters 1–3) and final (5-chapter) examinations are therefore about one semester later than for first-semester entrants.",entered:"entered {e}",
   notopenNote:"Some courses in your plan are not offered this semester. Please consult your advisor.",
   opened:"Courses offered this semester",groups:"Sections",cal:"Key dates",tba:"To be announced",calLink:"University academic calendar",regLink:"Registration system",
   help:"Contact and support",helpTxt:"If you have questions about a score or grade, you can request details or submit an appeal {w}.",appealForm:"Request and appeal form",appealTba:"Online form (in preparation): please contact programme staff",contactTba:"Programme contact: to be announced",
@@ -117,32 +117,35 @@ const GRP=x=>L==="en"?x.replace("นิสิตไทย","Thai students").repl
 const cnum=c=>{const m=String(c.credits).match(/(\d+)\s*หน่วยกิต/);return m?+m[1]:0;};
 const [tS,tY]=D.term.label.split("/").map(Number);
 // รุ่นนับตามปีที่เข้า: เข้าภาค 1 หรือ 2 ของปีเดียวกันเรียนพร้อมกัน (หลักสูตรกำหนด 11 พ.ย. 2569) · ภาคที่ของแผน = (ปีปัจจุบัน − ปีที่เข้า) × 2 + ภาคปัจจุบัน
-const slotOf=e=>e*2+tS;
-let P=Q.get("p")||store.get("p")||"ma",E=+(Q.get("y")||store.get("y")||0),K=+(Q.get("t")||store.get("t")||-1);   // E = จำนวนปีย้อนหลังจากปีปัจจุบัน
+// รายวิชาผูกกับภาค: วิชาภาคต้นเปิดภาคต้น วิชาภาคปลายเปิดภาคปลาย นิสิตเรียนตามภาคที่เปิด (หลักสูตรกำหนด 11 พ.ย. 2569)
+// ภาคนี้เรียนชุดที่ k ของภาคเดียวกันในแผน · k = จำนวนภาคชนิดเดียวกับภาคนี้นับตั้งแต่เข้าศึกษา · คืนลำดับในแผน (Y1S1=1, Y1S2=2, …)
+const slotFor=(es,ey)=>{const k=tS===1?tY-(es===1?ey:ey+1)+1:tY-ey+1;return k<1?0:(k-1)*2+tS;};
+let P=Q.get("p")||store.get("p")||"ma",E=(Q.get("e")||store.get("e")||"").replace("-","/"),K=+(Q.get("t")||store.get("t")||-1);   // E = ภาคที่เข้าศึกษา เช่น "1/2569" หรือ "before"
 
 function render(){
   document.documentElement.lang=L;document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
   $("h1").textContent=t("h1",{t:D.term.label});$("h1s").textContent=t("h1s");document.title=t("h1",{t:D.term.label})+" · BizInno";
   $("tPick").textContent=t("pick");$("lP").textContent=t("lP");$("lE").textContent=t("lE");$("lT").textContent=t("lT");
-  const pl=D.programs[P].plan,N=pl.slots.length;if(K<0||K>=pl.tracks.length)K=pl.tracks.findIndex(x=>/ก2|2\.1/.test(x));if(K<0)K=0;const NY=Math.ceil((N-tS)/2)+1;if(!(E>=0&&E<=NY))E=0;
+  const pl=D.programs[P].plan,N=pl.slots.length;if(K<0||K>=pl.tracks.length)K=pl.tracks.findIndex(x=>/ก2|2\.1/.test(x));if(K<0)K=0;const ENT=[];{let s2=tS,y2=tY;for(let i=0;i<24;i++){const n=slotFor(s2,y2);if(n>N)break;ENT.push([s2+"/"+y2,s2,y2,n]);if(s2===2)s2=1;else{s2=2;y2--;}}}
+  if(E!=="before"&&!ENT.some(x=>x[0]===E))E=(ENT.find(x=>x[1]===1)||ENT[0])[0];
   $("sP").innerHTML=Object.keys(D.programs).map(k=>'<button data-v="'+k+'"'+(k===P?' class="on"':"")+">"+esc(t(k))+"</button>").join("");
-  $("sE").innerHTML=Array.from({length:NY},(_,i)=>i).filter(e=>slotOf(e)<=N).map(e=>{const Y=tY-e;return'<button data-v="'+e+'" title="'+esc(t("yrs",{Y}))+'"'+(e===E?' class="on"':"")+">"+esc(t("yr",{y:String(Y).slice(-2),Y}))+"</button>";}).join("")+'<button data-v="'+NY+'"'+(E===NY||slotOf(E)>N?' class="on"':"")+">"+esc(t("before"))+"</button>";
+  $("sE").innerHTML=ENT.map(x=>'<button data-v="'+x[0]+'"'+(x[0]===E?' class="on"':"")+">"+x[0]+"</button>").join("")+'<button data-v="before"'+(E==="before"?' class="on"':"")+">"+esc(t("before"))+"</button>";
   $("sT").innerHTML=pl.tracks.map((x,i)=>'<button data-v="'+i+'"'+(i===K?' class="on"':"")+">"+esc(TRK(x))+"</button>").join("");
   $("sP").querySelectorAll("button").forEach(b=>b.onclick=()=>{P=b.dataset.v;K=-1;save();render();});
-  $("sE").querySelectorAll("button").forEach(b=>b.onclick=()=>{E=+b.dataset.v;save();render();});
+  $("sE").querySelectorAll("button").forEach(b=>b.onclick=()=>{E=b.dataset.v;save();render();});
   $("sT").querySelectorAll("button").forEach(b=>b.onclick=()=>{K=+b.dataset.v;save();render();});
   const here=CRS.filter(c=>c.level===P),byCode=Object.fromEntries(here.map(c=>[c.code,c])),elec=here.filter(c=>/เลือก/.test(c.category));
   const nm=c=>L==="en"&&c.nameEn?c.nameEn:c.nameTh;
   const row=(code,name,cr,c)=>'<div class="course"><div class="nm"><b>'+esc(code.slice(0,4)+" "+code.slice(4))+"</b> "+esc(c?nm(c):L==="en"?name.replace("วิทยานิพนธ์","Thesis").replace("การค้นคว้าอิสระ","Independent Study"):name)+(c?'<span class="tag ok">'+esc(t("open"))+"</span>":/วิทยานิพนธ์|ค้นคว้าอิสระ/.test(name)?'<span class="tag ok">'+esc(t("thesis"))+"</span>":'<span class="tag wait">'+esc(t("notopen"))+"</span>")+(c&&L==="th"&&c.nameEn?"<small>"+esc(c.nameEn)+"</small>":"")+'</div><span class="cr">'+cr+" "+esc(t("cr"))+"</span>"+(c?'<button class="btn" data-c="'+c.code+'">'+esc(t("detail"))+"</button>":"")+"</div>";
   let h="";
-  const n=slotOf(E);if(n>N){h='<div class="head"><b>'+esc(t("you",{t:D.term.label}))+"</b></div><div class='note'>"+esc(t("over"))+"</div>";}
+  const ent=ENT.find(x=>x[0]===E),n=ent?ent[3]:N+1;if(n>N){h='<div class="head"><b>'+esc(t("you",{t:D.term.label}))+"</b></div><div class='note'>"+esc(t("over"))+"</div>";}
   else{const s=pl.slots[n-1],items=s[2][K]||[];let miss=false,tot=0;
-    h='<div class="head"><b>'+esc(t("you",{t:D.term.label}))+'</b><span class="sub">'+esc(t("yr",{y:String(tY-E).slice(-2),Y:tY-E}))+" ("+esc(t("yrs",{Y:tY-E}))+") · "+esc(t("sem",{n,s:L==="en"?SLOT_EN(s[1]):s[1]}))+" · "+esc(TRK(pl.tracks[K]))+"</span></div>";
+    h='<div class="head"><b>'+esc(t("you",{t:D.term.label}))+'</b><span class="sub">'+esc(t("entered",{e:E}))+" · "+esc(t("sem",{n,s:L==="en"?SLOT_EN(s[1]):s[1]}))+" · "+esc(TRK(pl.tracks[K]))+"</span></div>";
     items.forEach(x=>{tot+=x.cr;if(x.code==="elective"){h+='<div class="course"><div class="nm"><b>'+esc(t("elective",{c:x.cr}))+"</b><small>"+esc(t("elecPick"))+"</small></div></div>"+elec.map(c=>row(c.code,c.nameTh,cnum(c),c)).join("");if(!elec.length)miss=true;}
       else{const c=byCode[x.code];if(!c&&!/วิทยานิพนธ์|ค้นคว้าอิสระ/.test(x.name))miss=true;h+=row(x.code,x.name,x.cr,c);}});
     h+='<p style="margin:10px 0 0;text-align:right">'+esc(t("total"))+' <span class="big">'+tot+"</span> "+esc(t("cr"))+"</p>";
     if(miss)h+="<div class='warn'>"+esc(t("notopenNote"))+"</div>";
-    h+="<div class='note'>"+esc(t("late"))+"</div>";}
+    if(ent&&ent[1]===2)h+="<div class='note'>"+esc(t("late"))+"</div>";}
   h+='<p style="margin:8px 0 0"><button class="btn" id="cp">🔗 '+esc(t("link"))+'</button> <span class="sub" id="cpm"></span></p>';
   $("res").innerHTML=h;
   $("opened").innerHTML="<h2>"+esc(t("opened"))+" ("+here.length+")</h2>"+'<div class="tw"><table><thead><tr><th></th><th>'+esc(t("cr"))+"</th><th>"+esc(t("groups"))+"</th><th>"+esc(t("sched"))+"</th><th></th></tr></thead><tbody>"+
@@ -153,7 +156,7 @@ function render(){
   $("help").innerHTML="<h2>"+esc(t("help"))+"</h2><p style='margin:0 0 6px'>"+esc(t("helpTxt",{w}))+"</p><p style='margin:0 0 6px'>"+(A&&A.formUrl?'<a href="'+esc(A.formUrl)+'" target="_blank" rel="noopener">'+esc(t("appealForm"))+"</a>":esc(t("appealTba")))+"</p><p class='sub' style='margin:0'>"+((REG.contact||[]).length?REG.contact.map(c=>esc(c)).join(" · "):esc(t("contactTba")))+"</p>";
   $("foot").textContent=t("foot",{t:D.term.label,u:D.updated});
   document.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>openC(b.dataset.c));
-  $("cp").onclick=async()=>{const u=location.origin+location.pathname+"?p="+P+"&y="+E+"&t="+K+(L==="en"?"&lang=en":"");try{await navigator.clipboard.writeText(u);$("cpm").textContent=t("copied");}catch(e){$("cpm").textContent=u;}};
+  $("cp").onclick=async()=>{const u=location.origin+location.pathname+"?p="+P+"&e="+E.replace("/","-")+"&t="+K+(L==="en"?"&lang=en":"");try{await navigator.clipboard.writeText(u);$("cpm").textContent=t("copied");}catch(e){$("cpm").textContent=u;}};
 }
 function openC(code){const c=CRS.find(x=>x.code===code);if(!c)return;const sc=(REG.schedule||{})[c.code];
   const as=c.assess.filter(r=>!/^รวม/.test(r[0])).slice().sort((a,b)=>(parseInt(a[3])||0)-(parseInt(b[3])||0));
@@ -164,7 +167,7 @@ function openC(code){const c=CRS.find(x=>x.code===code);if(!c)return;const sc=(R
     "<h4>"+esc(t("cas"))+'</h4><div class="tw"><table><thead><tr><th>'+esc(t("wk"))+"</th><th>"+esc(t("what"))+"</th><th>"+esc(t("wt"))+"</th></tr></thead><tbody>"+as.map(r=>"<tr><td>"+esc(r[3])+"</td><td>"+esc(r[1])+"</td><td>"+esc(String(r[4]).replace("ร้อยละ ",""))+"%</td></tr>").join("")+"</tbody></table></div>"+
     (L==="en"?"<p class='sub' style='margin-top:8px'>Course details are in Thai, as in the official course specification.</p>":"");
   $("dlg").classList.add("on");$("x").focus();}
-function save(){store.set("p",P);store.set("y",E);store.set("t",K);}
+function save(){store.set("p",P);store.set("e",E);store.set("t",K);}
 $("x").onclick=()=>$("dlg").classList.remove("on");$("dlg").onclick=e=>{if(e.target.id==="dlg")$("dlg").classList.remove("on");};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")$("dlg").classList.remove("on");});
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;store.set("lang",L);render();});
