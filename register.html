@@ -148,9 +148,9 @@ function render(){
   const ent=ENT.find(x=>x[0]===E),n=ent?ent[3]:N+1;if(n>N){h='<div class="head"><b>'+esc(t("you",{t:D.term.label}))+"</b></div><div class='note'>"+esc(t("over"))+"</div>";}
   else{const s=pl.slots[n-1],items=s[2][K]||[];let miss=false,tot=0;
     h='<div class="head"><b>'+esc(t("you",{t:D.term.label}))+'</b><span class="sub">'+esc(t("entered",{e:E}))+" · "+esc(t("sem",{n,s:L==="en"?SLOT_EN(s[1]):s[1]}))+" · "+esc(TRK(pl.tracks[K]))+"</span></div>";
-    items.forEach(x=>{tot+=x.cr;if(x.code==="elective"){h+='<div class="course"><div class="nm"><b>'+esc(t("elective",{c:x.cr}))+"</b><small>"+esc(t("elecPick"))+"</small></div></div>"+elec.map(c=>row(c.code,c.nameTh,cnum(c),c)).join("");if(!elec.length)miss=true;}
+    items.map(x=>{const r=isTh(x.name)?ruleOf(K):null,o=r&&r.credits&&r.credits[n];return o?{...x,cr:o,orig:x.cr,note:r.creditsNote}:x;}).forEach(x=>{tot+=x.cr;if(x.code==="elective"){h+='<div class="course"><div class="nm"><b>'+esc(t("elective",{c:x.cr}))+"</b><small>"+esc(t("elecPick"))+"</small></div></div>"+elec.map(c=>row(c.code,c.nameTh,cnum(c),c)).join("");if(!elec.length)miss=true;}
       else if(isTh(x.name)&&!thOK(K,n)){tot-=x.cr;const r=ruleOf(K);h+='<div class="course"><div class="nm"><b>'+esc(x.code.slice(0,4)+" "+x.code.slice(4))+"</b> "+esc(L==="en"?"Thesis / Independent Study":x.name)+'<span class="tag wait">'+esc(t("thLater"))+"</span><small>"+esc(r.exam?t("thLaterNote",{x:r.exam[L==="en"?1:0]}):t("thLaterNote0"))+'</small></div><span class="cr" style="color:var(--muted)">–</span></div>';}
-      else{const c=byCode[x.code];if(!c&&!/วิทยานิพนธ์|ค้นคว้าอิสระ/.test(x.name))miss=true;h+=row(x.code,x.name,x.cr,c);}});
+      else{const c=byCode[x.code];if(!c&&!/วิทยานิพนธ์|ค้นคว้าอิสระ/.test(x.name))miss=true;h+=row(x.code,x.name,x.cr,c);if(x.orig!=null&&x.note)h=h.replace(/<\/small><\/div>(<span class="cr">[^<]*<\/span><\/div>)$/,"<br>"+esc(x.note[L==="en"?1:0])+"</small></div>$1");}});
     h+='<p style="margin:10px 0 0;text-align:right">'+esc(t("total"))+' <span class="big">'+tot+"</span> "+esc(t("cr"))+"</p>";
     if(miss)h+="<div class='warn'>"+esc(t("notopenNote"))+"</div>";
     if(ent&&ent[1]===2)h+="<div class='note'>"+esc(t("late"))+"</div>";}
