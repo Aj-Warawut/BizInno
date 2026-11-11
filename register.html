@@ -90,7 +90,7 @@ let L=Q.get("lang")||store.get("lang")||"th";
 const T={
  th:{h1:"แผนการลงทะเบียนเรียน ภาคการศึกษา {t}",h1s:"สาขาวิชาบริหารธุรกิจและนวัตกรรมดิจิทัล คณะการบัญชีและการจัดการ มหาวิทยาลัยมหาสารคาม",pick:"เลือกข้อมูลของคุณ",lP:"หลักสูตร",lE:"ภาคที่เข้าศึกษา",lT:"แผนการเรียน",
   ma:"ปริญญาโท (บธ.ม.)",phd:"ปริญญาเอก (ปร.ด.)",before:"ก่อนหน้านั้น",you:"ภาค {t} คุณต้องลงทะเบียน",sem:"ภาคที่ {n} ของแผน · {s}",cr:"หน่วยกิต",total:"รวม",
-  open:"เปิดภาคนี้",thesis:"ลงทะเบียนได้ทุกภาค · ร่วมกับอาจารย์ที่ปรึกษา",notopen:"ไม่เปิดภาคนี้",detail:"รายละเอียด",elective:"วิชาเลือก {c} หน่วยกิต",elecPick:"เลือกจากวิชาเลือกที่เปิดภาคนี้:",
+  open:"เปิดภาคนี้",thesis:"ลงทะเบียนร่วมกับอาจารย์ที่ปรึกษา",thFor:"สำหรับนิสิตรุ่นเข้า {e}",thTitle:"วิทยานิพนธ์และการค้นคว้าอิสระ ภาค {t}",thCoh:"นิสิตรุ่นที่ลงทะเบียน",thCond:"เงื่อนไข",plan:"แผน",thNone:"–",notopen:"ไม่เปิดภาคนี้",detail:"รายละเอียด",elective:"วิชาเลือก {c} หน่วยกิต",elecPick:"เลือกจากวิชาเลือกที่เปิดภาคนี้:",
   over:"คุณเรียนครบตามแผนการศึกษาแล้ว ลงทะเบียนวิทยานิพนธ์หรือการค้นคว้าอิสระต่อ และรักษาสภาพนิสิตทุกภาค ปรึกษาอาจารย์ที่ปรึกษาก่อนลงทะเบียน",
   late:"เข้าภาคปลาย: ลงทะเบียนรายวิชาภาคปลายของแผนก่อน แล้วเรียนรายวิชาภาคต้นในภาคต้นปีถัดไปพร้อมรุ่นใหม่ การสอบวัดคุณสมบัติ สอบเค้าโครง (3 บท) และสอบ 5 บท จึงช้ากว่ารุ่นที่เข้าภาคต้นประมาณหนึ่งภาค",entered:"เข้า {e}",
   notopenNote:"มีวิชาตามแผนที่ไม่เปิดภาคนี้ ปรึกษาอาจารย์ที่ปรึกษาเพื่อวางแผนลงทะเบียน",
@@ -101,7 +101,7 @@ const T={
   link:"คัดลอกลิงก์ของฉัน",copied:"คัดลอกลิงก์แล้ว"},
  en:{h1:"Course Registration Plan, Semester {t}",h1s:"Business and Digital Innovation, Mahasarakham Business School, Mahasarakham University",pick:"Select your details",lP:"Programme",lE:"Semester you entered",lT:"Study plan",
   ma:"Master's (M.B.A.)",phd:"Doctoral (Ph.D.)",before:"Earlier",you:"In semester {t} you register for",sem:"Plan semester {n} · {s}",cr:"credits",total:"Total",
-  open:"Offered this semester",thesis:"Every semester · with your advisor",notopen:"Not offered this semester",detail:"Details",elective:"Elective, {c} credits",elecPick:"Choose from the electives offered this semester:",
+  open:"Offered this semester",thesis:"Register with your advisor",thFor:"For students who entered {e}",thTitle:"Thesis and independent study, semester {t}",thCoh:"Students who register",thCond:"Condition",plan:"Plan",thNone:"–",notopen:"Not offered this semester",detail:"Details",elective:"Elective, {c} credits",elecPick:"Choose from the electives offered this semester:",
   over:"You have completed the coursework in your study plan. Register for thesis or independent study and maintain your student status each semester. Please consult your advisor before registering.",
   late:"Second-semester entry: you take the plan's second-semester courses first, then the first-semester courses in the next first semester with the new intake. Your qualifying, proposal (chapters 1–3) and final (5-chapter) examinations are therefore about one semester later than for first-semester entrants.",entered:"entered {e}",
   notopenNote:"Some courses in your plan are not offered this semester. Please consult your advisor.",
@@ -128,6 +128,11 @@ function render(){
   $("tPick").textContent=t("pick");$("lP").textContent=t("lP");$("lE").textContent=t("lE");$("lT").textContent=t("lT");
   const pl=D.programs[P].plan,N=pl.slots.length;if(K<0||K>=pl.tracks.length)K=pl.tracks.findIndex(x=>/ก2|2\.1/.test(x));if(K<0)K=0;const ENT=[];{let s2=tS,y2=tY;for(let i=0;i<24;i++){const n=slotFor(s2,y2);if(n>N)break;ENT.push([s2+"/"+y2,s2,y2,n]);if(s2===2)s2=1;else{s2=2;y2--;}}}
   if(E!=="before"&&!ENT.some(x=>x[0]===E))E=(ENT.find(x=>x[1]===1)||ENT[0])[0];
+  // วิทยานิพนธ์: รุ่นใดลงทะเบียนรหัสนี้ในภาคนี้ (ตามแผน) และเงื่อนไขก่อนลงทะเบียน
+  const isTh=x=>/วิทยานิพนธ์|ค้นคว้าอิสระ/.test(x);
+  const cohOf=(code,k)=>ENT.filter(x=>(pl.slots[x[3]-1][2][k]||[]).some(i=>i.code===code)).map(x=>x[0]);
+  const span=a=>a.length>2?a[a.length-1]+" – "+a[0]:a.join(", ");   // แสดงช่วงรุ่น เช่น 1/2567 – 2/2568
+  const rule=((REG.thesisRule||{})[P]||null),ruleTxt=rule?rule[L==="en"?1:0]:"";
   $("sP").innerHTML=Object.keys(D.programs).map(k=>'<button data-v="'+k+'"'+(k===P?' class="on"':"")+">"+esc(t(k))+"</button>").join("");
   $("sE").innerHTML=ENT.map(x=>'<button data-v="'+x[0]+'"'+(x[0]===E?' class="on"':"")+">"+x[0]+"</button>").join("")+'<button data-v="before"'+(E==="before"?' class="on"':"")+">"+esc(t("before"))+"</button>";
   $("sT").innerHTML=pl.tracks.map((x,i)=>'<button data-v="'+i+'"'+(i===K?' class="on"':"")+">"+esc(TRK(x))+"</button>").join("");
@@ -136,7 +141,7 @@ function render(){
   $("sT").querySelectorAll("button").forEach(b=>b.onclick=()=>{K=+b.dataset.v;save();render();});
   const here=CRS.filter(c=>c.level===P),byCode=Object.fromEntries(here.map(c=>[c.code,c])),elec=here.filter(c=>/เลือก/.test(c.category));
   const nm=c=>L==="en"&&c.nameEn?c.nameEn:c.nameTh;
-  const row=(code,name,cr,c)=>'<div class="course"><div class="nm"><b>'+esc(code.slice(0,4)+" "+code.slice(4))+"</b> "+esc(c?nm(c):L==="en"?name.replace("วิทยานิพนธ์","Thesis").replace("การค้นคว้าอิสระ","Independent Study"):name)+(c?'<span class="tag ok">'+esc(t("open"))+"</span>":/วิทยานิพนธ์|ค้นคว้าอิสระ/.test(name)?'<span class="tag ok">'+esc(t("thesis"))+"</span>":'<span class="tag wait">'+esc(t("notopen"))+"</span>")+(c&&L==="th"&&c.nameEn?"<small>"+esc(c.nameEn)+"</small>":"")+'</div><span class="cr">'+cr+" "+esc(t("cr"))+"</span>"+(c?'<button class="btn" data-c="'+c.code+'">'+esc(t("detail"))+"</button>":"")+"</div>";
+  const row=(code,name,cr,c)=>'<div class="course"><div class="nm"><b>'+esc(code.slice(0,4)+" "+code.slice(4))+"</b> "+esc(c?nm(c):L==="en"?name.replace("วิทยานิพนธ์","Thesis").replace("การค้นคว้าอิสระ","Independent Study"):name)+(c?'<span class="tag ok">'+esc(t("open"))+"</span>":isTh(name)?'<span class="tag ok">'+esc(t("thesis"))+"</span><small>"+esc(t("thFor",{e:span(cohOf(code,K))||"–"}))+(ruleTxt?" · <b>"+esc(ruleTxt)+"</b>":"")+"</small>":'<span class="tag wait">'+esc(t("notopen"))+"</span>")+(c&&L==="th"&&c.nameEn?"<small>"+esc(c.nameEn)+"</small>":"")+'</div><span class="cr">'+cr+" "+esc(t("cr"))+"</span>"+(c?'<button class="btn" data-c="'+c.code+'">'+esc(t("detail"))+"</button>":"")+"</div>";
   let h="";
   const ent=ENT.find(x=>x[0]===E),n=ent?ent[3]:N+1;if(n>N){h='<div class="head"><b>'+esc(t("you",{t:D.term.label}))+"</b></div><div class='note'>"+esc(t("over"))+"</div>";}
   else{const s=pl.slots[n-1],items=s[2][K]||[];let miss=false,tot=0;
@@ -149,7 +154,8 @@ function render(){
   h+='<p style="margin:8px 0 0"><button class="btn" id="cp">🔗 '+esc(t("link"))+'</button> <span class="sub" id="cpm"></span></p>';
   $("res").innerHTML=h;
   $("opened").innerHTML="<h2>"+esc(t("opened"))+" ("+here.length+")</h2>"+'<div class="tw"><table><thead><tr><th></th><th>'+esc(t("cr"))+"</th><th>"+esc(t("groups"))+"</th><th>"+esc(t("sched"))+"</th><th></th></tr></thead><tbody>"+
-    here.map(c=>{const sc=(REG.schedule||{})[c.code];return"<tr><td><b>"+esc(c.codeFmt)+"</b> "+esc(nm(c))+"</td><td>"+cnum(c)+"</td><td>"+esc((c.groups||[]).map(GRP).join(" · "))+"</td><td>"+(sc?esc(sc):'<span class="tba">'+esc(t("tba"))+"</span>")+'</td><td><button class="btn" data-c="'+c.code+'">'+esc(t("detail"))+"</button></td></tr>";}).join("")+"</tbody></table></div>";
+    here.map(c=>{const sc=(REG.schedule||{})[c.code];return"<tr><td><b>"+esc(c.codeFmt)+"</b> "+esc(nm(c))+"</td><td>"+cnum(c)+"</td><td>"+esc((c.groups||[]).map(GRP).join(" · "))+"</td><td>"+(sc?esc(sc):'<span class="tba">'+esc(t("tba"))+"</span>")+'</td><td><button class="btn" data-c="'+c.code+'">'+esc(t("detail"))+"</button></td></tr>";}).join("")+"</tbody></table></div>"+(()=>{const rows=[];pl.tracks.forEach((tr,k)=>{const codes=[...new Set(pl.slots.flatMap(sl=>(sl[2][k]||[]).filter(i=>isTh(i.name)).map(i=>i.code+"|"+i.name)))];codes.forEach(cn=>{const [code,name]=cn.split("|"),co=cohOf(code,k);if(co.length)rows.push([code.slice(0,4)+" "+code.slice(4)+" "+(L==="en"?name.replace("วิทยานิพนธ์","Thesis").replace("การค้นคว้าอิสระ","Independent Study"):name),TRK(tr),span(co),ruleTxt||t("thNone")]);});});
+    return rows.length?"<h2 style='margin-top:16px'>"+esc(t("thTitle",{t:D.term.label}))+'</h2><div class="tw"><table><thead><tr><th></th><th>'+esc(t("plan"))+"</th><th>"+esc(t("thCoh"))+"</th><th>"+esc(t("thCond"))+"</th></tr></thead><tbody>"+rows.map(r=>"<tr>"+r.map(x=>"<td>"+esc(x)+"</td>").join("")+"</tr>").join("")+"</tbody></table></div>":"";})();
   $("cal").innerHTML="<h2>"+esc(t("cal"))+"</h2>"+'<div class="tw"><table><tbody>'+(REG.calendar||[]).map(r=>"<tr><td>"+esc(L==="en"?r[1]:r[0])+"</td><td>"+(r[2]?esc(r[2]):'<span class="tba">'+esc(t("tba"))+"</span>")+"</td></tr>").join("")+"</tbody></table></div>"+
     '<p class="sub" style="margin:8px 0 0">'+[REG.calUrl?'<a href="'+esc(REG.calUrl)+'" target="_blank" rel="noopener">'+esc(t("calLink"))+"</a>":esc(t("calLink"))+": "+esc(t("tba")),REG.regUrl?'<a href="'+esc(REG.regUrl)+'" target="_blank" rel="noopener">'+esc(t("regLink"))+"</a>":esc(t("regLink"))+": "+esc(t("tba"))].join(" · ")+"</p>";
   const A=D.appeal,w=A&&A.steps&&A.steps[1]?(L==="en"?"within 7 days of the announcement":A.steps[1].when):"";

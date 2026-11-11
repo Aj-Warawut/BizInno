@@ -855,6 +855,13 @@
   "calUrl": "",
   "regUrl": "",
   "contact": [],
-  "schedule": {}
+  "schedule": {},
+  "thesisRule": {
+   "phd": [
+    "ต้องสอบวัดคุณสมบัติ (QE) ผ่านแล้ว",
+    "Qualifying examination (QE) passed"
+   ],
+   "ma": null
+  }
  }
 }
