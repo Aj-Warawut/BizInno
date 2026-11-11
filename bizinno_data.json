@@ -857,10 +857,17 @@
   "contact": [],
   "schedule": {},
   "thesisRule": {
-   "phd": [
-    "ต้องสอบวัดคุณสมบัติ (QE) ผ่านแล้ว",
-    "Qualifying examination (QE) passed"
-   ],
+   "phd": {
+    "tracks": [
+     "แบบ 2.1",
+     "แบบ 2.2"
+    ],
+    "text": [
+     "ต้องสอบวัดคุณสมบัติ (QE) ผ่านแล้ว",
+     "Qualifying examination (QE) passed"
+    ],
+    "src": "มคอ.2 ปร.ด. หมวด 5 ข้อ 4.3–4.4 (แผน 2 แบบ 2.1, 2.2) และหลักสูตรกำหนดให้ผ่าน QE ก่อนลงทะเบียนวิทยานิพนธ์"
+   },
    "ma": null
   }
  }
